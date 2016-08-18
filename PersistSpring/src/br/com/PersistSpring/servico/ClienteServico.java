@@ -9,7 +9,7 @@ public class ClienteServico {
 	
 	public String salvar(String nomeCliente,String cpfCliente,String cnpjCliente,String tipoCliente ){
 			
-		return clienteDao.salvar(clienteDao.buscaIdCliente(), nomeCliente, cpfCliente, cnpjCliente, tipoCliente);
+		return clienteDao.salvar(nomeCliente, cpfCliente, cnpjCliente, tipoCliente);
 				
 	}
 	

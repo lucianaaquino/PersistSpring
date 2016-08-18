@@ -12,14 +12,14 @@ public class ClienteDao {
 	
 	
 	
-	public String salvar(int idCliente,String nomeCliente,String cpfCliente,String cnpjCliente,String tipoCliente){
+	public String salvar(String nomeCliente,String cpfCliente,String cnpjCliente,String tipoCliente){
 		Conexao con = new Conexao();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String msg ="Cadastro Efetuado com Sucesso";
 		try {
 		stmt = con.abreConexao().prepareStatement("insert into CLIENTE values (?,?,?,?,?)");
-			stmt.setInt(1,idCliente );
+			stmt.setInt(1,buscaIdCliente() );
 			stmt.setString(2,nomeCliente);
 			stmt.setString(3,cpfCliente);
 			stmt.setString(4,cnpjCliente);
@@ -32,10 +32,8 @@ public class ClienteDao {
 		}finally {
 			con.closeConnection(stmt, rs);
 		}
-		
 		return msg;
-		
-		
+			
 	}
 	
 	public int buscaIdCliente(){
@@ -43,7 +41,6 @@ public class ClienteDao {
 		Conexao con = new Conexao();
 		PreparedStatement stmt =  null;
 		ResultSet rs = null;
-		
 		try {
 			stmt = con.abreConexao().prepareStatement("select count(*) id FROM CLIENTE");
 			rs = stmt.executeQuery();

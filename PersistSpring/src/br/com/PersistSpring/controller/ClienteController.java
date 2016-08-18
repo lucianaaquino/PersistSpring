@@ -9,14 +9,10 @@ import br.com.PersistSpring.servico.ClienteServico;
 
 
 @Controller
-public class indexController {
+public class ClienteController {
 	
-	@RequestMapping("/index")
-	public ModelAndView index(Model model) {
-		return new ModelAndView("/index");
-	}
-
-	@RequestMapping("/telaCliente")
+	
+	@RequestMapping("/cadastraUsuario")
 	public ModelAndView telaCliente(Model model) {
 		return new ModelAndView("/cliente");
 	}

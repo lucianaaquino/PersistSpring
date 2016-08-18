@@ -7,20 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="cadastraUsuario">
-		
-		Nome:<input type="text" required="required" name="nomeCliente " >
-		<br>
-		CPF:<input type="text" name="cpfCliente" >
-		<br>
-		CNPJ:<input type="text" name="cnpjCliente" >
-		<br>
-		Tipo Cliente:<input type="text" name="tipoCliente" >
-		<br>
-		<br>
-		<input type="submit" value="Cadastra Usuario "  >
-		<br>
-	 ${mensagem}
-	</form>
+
+<h2>Bem-Vindo</h2>
+
+
+<form action="telaCliente">
+ <input type="submit" value="Cliente"  >
+</form>
+
+<a href="telaCliente">Cliente</a>
+
+	
 </body>
 </html>
