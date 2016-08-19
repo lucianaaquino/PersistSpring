@@ -1,28 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Tela Cliente</title>
 </head>
 <body>
-<form action="cadastraUsuario">
-		
-		Nome:<input type="text" required="required" name="nomeCliente " >
+<form action="cadastraCliente" method="post">
+		Nome:<input type="text" required="required" name="nome" >
 		<br>
-		CPF:<input type="text" name="cpfCliente" >
+		CPF:<input type="text" name="refix="c" cpf" >
 		<br>
-		CNPJ:<input type="text" name="cnpjCliente" >
+		CNPJ:<input type="text" name="cnpj" >
 		<br>
 		Tipo Cliente:<input type="text" name="tipoCliente" >
 		<br>
 		<br>
 		<input type="submit" value="Cadastra Usuario "  >
+	
+	<a href="index"><input type="button" value="Voltar" ></a>
 		<br>
 	 ${mensagem}
 	</form> 
 	
-	<a href="index"><input type="button" value="Voltar" ></a>
+		<br>
+		<br>
+	<form action="pesquisarCliente" method="post">
+		Nome:<input type="text" required="required" name="nome" >
+			<input type="submit" value="Pesquisar"  >
+			
+	</form> 
+
+<c:forEach items="${listaCliente}" var="cliente">
+${cliente.nome } - ${cliente.cpf } 
+<br>
+
+</c:forEach>
+	
+	
+	
+	
+
 </body>
 </html>

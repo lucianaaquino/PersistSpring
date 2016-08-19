@@ -15,7 +15,7 @@
  <input type="submit" value="Cliente"  >
 </form>
 
-<a href="telaCliente">Cliente</a>
+
 
 	
 </body>
