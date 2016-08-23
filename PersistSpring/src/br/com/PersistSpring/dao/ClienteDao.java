@@ -4,17 +4,51 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 
-import br.com.PersistSpring.bean.Cliente;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.PersistSpring.conexao.Conexao;
+import br.com.PersistSpring.modelo.Cliente;
 
 
-
+@Repository
 public class ClienteDao {
 	
 	
+	@PersistenceContext(unitName ="JPA")
+	protected EntityManager entityManager;
 	
-	public String salvar(Cliente cliente){
+	 @Transactional
+	  public void salvar(Cliente cliente) throws Exception {
+		 entityManager.persist(cliente);
+		
+	     
+	  }
+	 
+	 public List<Cliente> buscar(){
+		return entityManager.createNamedQuery("Cliente.findAll", Cliente.class).getResultList();
+		
+		 
+	 }
+	 public List<Cliente> buscar(Cliente cliente){
+			return entityManager.createNamedQuery("Cliente.buscaNome", Cliente.class).setParameter(1,cliente.getNome()+"%").getResultList();
+			
+			 
+		 }
+		 
+	 
+	 
+	 
+	
+	
+	
+	/*public String salvar(Cliente cliente){
 		Conexao con = new Conexao();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -36,7 +70,7 @@ public class ClienteDao {
 		}
 		return msg;
 			
-	}
+	}*/
 	
 	public int buscaIdCliente(){
 		int id=0;

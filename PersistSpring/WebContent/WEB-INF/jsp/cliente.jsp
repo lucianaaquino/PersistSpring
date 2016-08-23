@@ -13,7 +13,7 @@
 <form action="cadastraCliente" method="post">
 		Nome:<input type="text" required="required" name="nome" >
 		<br>
-		CPF:<input type="text" name="refix="c" cpf" >
+		CPF:<input type="text" name="cpf" >
 		<br>
 		CNPJ:<input type="text" name="cnpj" >
 		<br>
@@ -30,18 +30,25 @@
 		<br>
 		<br>
 	<form action="pesquisarCliente" method="post">
+			<input type="submit" value="Pesquisar Geral"  >
+			
+	</form> 
+	<c:forEach items="${listaCliente}" var="cliente">
+		${cliente.nome } - ${cliente.cpf } 
+		<br>
+	</c:forEach>
+	<br><br>
+	
+	<form action="pesquisarClienteNome" method="post">
 		Nome:<input type="text" required="required" name="nome" >
 			<input type="submit" value="Pesquisar"  >
 			
 	</form> 
-
-<c:forEach items="${listaCliente}" var="cliente">
-${cliente.nome } - ${cliente.cpf } 
-<br>
-
-</c:forEach>
-	
-	
+	<br><br>
+		<c:forEach items="${listaClienteNome}" var="cliente">
+		${cliente.nome } - ${cliente.cpf } 
+		<br>
+	</c:forEach>
 	
 	
 
