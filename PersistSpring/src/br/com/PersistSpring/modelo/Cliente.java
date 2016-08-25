@@ -1,8 +1,17 @@
 package br.com.PersistSpring.modelo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -20,39 +29,36 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_CLIENTE")
 	private int idCliente;
 
+	@Column(name="CNPJ")
 	private String cnpj;
 
+	@Column(name="CPF")
 	private String cpf;
-	
+
 	@Column(name="NOME")
 	private String nome;
 
 	@Column(name="TIPO_CLIENTE")
 	private String tipoCliente;
 
-/*	//bi-directional many-to-one association to Pedido
+	//bi-directional many-to-one association to Pedido
 	@OneToMany(mappedBy="cliente")
-	private List<Pedido> pedidos;*/
+	private List<Pedido> pedidos;
 
 	public Cliente() {
 	}
 
-	
-
 	public int getIdCliente() {
-		return idCliente;
+		return this.idCliente;
 	}
-
-
 
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-
-
 
 	public String getCnpj() {
 		return this.cnpj;
@@ -86,15 +92,15 @@ public class Cliente implements Serializable {
 		this.tipoCliente = tipoCliente;
 	}
 
-	/*public List<Pedido> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return this.pedidos;
 	}
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}*/
+	}
 
-	/*public Pedido addPedido(Pedido pedido) {
+	public Pedido addPedido(Pedido pedido) {
 		getPedidos().add(pedido);
 		pedido.setCliente(this);
 
@@ -106,6 +112,6 @@ public class Cliente implements Serializable {
 		pedido.setCliente(null);
 
 		return pedido;
-	}*/
+	}
 
 }

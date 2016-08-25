@@ -12,6 +12,9 @@
 
    <!-- entidade mapeada -->
    <class>br.com.PersistSpring.modelo.Cliente</class>
+      <class>br.com.PersistSpring.modelo.Fornecedor</class>
+      <class>br.com.PersistSpring.modelo.Pedido</class>
+      <class>br.com.PersistSpring.modelo.Produto</class>
 
    
    <exclude-unlisted-classes />
