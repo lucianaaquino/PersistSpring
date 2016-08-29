@@ -8,13 +8,14 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.PersistSpring.conexao.Conexao;
 import br.com.PersistSpring.modelo.Cliente;
+import br.com.PersistSpring.modelo.ItemPedido;
 import br.com.PersistSpring.modelo.Pedido;
 
 
@@ -25,10 +26,20 @@ public class PedidoDao {
 	@PersistenceContext(unitName ="JPA")
 	protected EntityManager entityManager;
 	
+	
 	 @Transactional
-	  public void salvar(Pedido pedido) throws Exception {
+	  public Pedido salvar(Pedido pedido) throws Exception {
 		 entityManager.persist(pedido);
-		
+		 entityManager.flush();
+		 return pedido;
+	     
+	  }
+	 
+	 @Transactional
+	  public ItemPedido salvarItem(ItemPedido itemPedido) throws Exception {
+		 entityManager.persist(itemPedido);
+		/* entityManager.flush();*/
+		 return itemPedido;
 	     
 	  }
 	 
@@ -37,6 +48,11 @@ public class PedidoDao {
 		
 		 
 	 }
+	 public Pedido buscarId(int id){
+			return entityManager.find(Pedido.class,id);
+			
+			 
+		 }
 /*	 public List<Pedido> buscar(Pedido pedido){
 			return entityManager.createNamedQuery("Pedido.buscaNome", Pedido.class).setParameter(1,pedido.getId()+"%").getResultList();
 			

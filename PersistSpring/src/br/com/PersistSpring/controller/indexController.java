@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.PersistSpring.servico.ClienteServico;
 import br.com.PersistSpring.servico.FornecedorServico;
+import br.com.PersistSpring.servico.PedidoServico;
+import br.com.PersistSpring.servico.ProdutoServico;
 
 
 @Controller
@@ -18,6 +20,12 @@ public class indexController {
 	
 	@Autowired
 	ClienteServico clienteServico;
+	
+	@Autowired
+	PedidoServico pedidoServico;
+	
+	@Autowired
+	ProdutoServico produtoServico;
 	
 	@RequestMapping("/index")
 	public ModelAndView index(Model model) {
@@ -42,6 +50,7 @@ public class indexController {
 	@RequestMapping("/telaPedido")
 	public ModelAndView telaPedido(Model model) {
 		model.addAttribute("listaCliente",	clienteServico.pesquisarCliente());
+		model.addAttribute("listaProduto",	produtoServico.pesquisarProduto());
 		return new ModelAndView("/pedido");
 	}
 	

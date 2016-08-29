@@ -42,10 +42,10 @@
 <%-- <input type="hidden" name="fornecedor" value="${listaFornecedor}"> --%>
        <select class="form-control" name="idFornecedor" >
       <c:forEach items="${listaFornecedor}" var="f">
-		<option value="${f.idFornecedor}" >${f.nome}</option>
+		<option value="${f.id}" >${f.nome}</option>
 		<br>
       </c:forEach>
-      </select>  
+      </select> 
       
   </div>
 </div>	

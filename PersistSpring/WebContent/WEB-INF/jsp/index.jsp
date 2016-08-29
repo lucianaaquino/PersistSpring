@@ -22,9 +22,9 @@
 
 <a href="telaCliente" class="btn btn-primary"> Cadastro de Clientes</a>
 
-<a href="telaProduto" class="btn btn-primary">Cadastro de Produtos</a>
-
 <a href="telaFornecedor" class="btn btn-primary">Cadastro de Fornecedores </a>
+
+<a href="telaProduto" class="btn btn-primary">Cadastro de Produtos</a>
 
 <a href="telaPedido" class="btn btn-primary">Cadastro de Pedidos </a>
 

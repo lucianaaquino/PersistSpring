@@ -34,13 +34,15 @@
 
 <div class="container">
 <br>
+	<c:if test="${pedido == null}">
+	
 <form action="cadastraPedido" class="form-horizontal" method="post">
  <div class="form-group">
   	<label class="col-sm-2 control-label">Cliente:</label>
  <div class="col-sm-10">
-            <select class="form-control" name="pk.clienteIdCliente" >
+            <select class="form-control" name="cliente.id"  >
       <c:forEach items="${listaCliente}" var="c">
-		<option value="${c.idCliente}" >${c.nome}</option>
+		<option value="${c.id}" >${c.nome}</option>
 		<br>
       </c:forEach>
       </select> 
@@ -48,57 +50,74 @@
 </div>
  <div class="form-group">
   	<label class="col-sm-2 control-label">Data:</label>
- 
- <div class="col-sm-10">
- 
-                    <input type="date" name="data" id="datepicker" class="form-control" />
-                    
-     
+ 	 <div class="col-sm-10">
+         <input type="date" name="data" id="datepicker"  class="form-control" />
   </div>
 </div>	
- 
-	
-<div align="center">
+
+
+
+	<div align="center">
 <input type="submit" class="btn btn-primary" value="Cadastra Pedido "  >
 <a href="index" class="btn btn-success" >Voltar </a>
 </div>
-</form>
-	
-	
-	<c:if test="${mensagem != null}">
-<div class="alert alert-warning" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  ${mensagem}
-</div>	 
 	</c:if>
-	 	
-	<!-- <form action="pesquisarCliente" method="post">
-			<input type="submit" value="Pesquisar Geral"  >
-			
-	</form>  -->
+
+ 
+
+      		 
 	
-	<!-- <form action="pesquisarClienteNome" method="post">
-		Nome:<input type="text" required="required" name="nome" >
-			<input type="submit" value="Pesquisar"  >
-			
-	</form>  -->
-	<form action="pesquisarClienteNome"   method="post">
-	<div class="input-group" align="center">
-      <input type="text" class="form-control" name="nome" placeholder="Nome Cliente">
-      <div class="input-group-btn">
-        <button class="btn btn-default glyphicon glyphicon-search" type="submit"></button> 
-      </div>
+	<c:if test="${pedido != null}">
+
+${pedido.id}--
+${pedido.data}
+
+ <div class="form-group">
+
+<table class="table table-bordered">
+ <thead>
+        <tr>
+          <th>id</th>
+          <th>Produto</th>
+          <th>Valor Unitario</th>
+          <th>Quantidade</th>
+          <th>Add</th>
+        </tr>
+      </thead>
+      <tbody>
+      <c:set var="cont" value="0" ></c:set>
+      <c:forEach items="${listaProduto}" var="p">
+      	<tr>
+      	<form action="adicionaItemPedido">
+      		<td>${p.id}</td>
+      		<td>${p.descricao}</td>
+      		<td>${p.valor}</td>
+      		<td><input type="text" name="quantidade"> </td>
+      		<td><input type="submit" value="Comprar" > </td>
+      			<input type="hidden" name="itemPedido.pk.pedidoId" value="${pedido.id}" > 
+      			<input type="hidden" name="itemPedido.pk.produtoId" value="${p.id}" > 
+       		</form> 
+      	</tr>
+      		${cont }---conta
+      	<c:set var="cont" value="${cont+1 }" ></c:set>
+      
+      </c:forEach>
+      </tbody>
+  
+</table
+
+
+<c:forEach items="${pedido.itemPedidos}" var="lp">
+${lp.produto.descricao }
+</c:forEach>
+
 </div>
-	</form>
-	
-	<br><br>
-	
-		<c:forEach items="${listaClienteNome}" var="cliente">
-		${cliente.nome } - ${cliente.cpf } 
-		<br>
-	</c:forEach>
-	
-	</div> 
+	<div align="center">
+<a href="index" class="btn btn-success" >Voltar </a>
+</div>
+
+ </c:if>
+
 
 </body>
 </html>
