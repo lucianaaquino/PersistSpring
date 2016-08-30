@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the FORNECEDOR database table.
+ * The persistent class for the fornecedor database table.
  * 
  */
 @Entity
@@ -17,17 +17,9 @@ public class Fornecedor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
 	private int id;
 
-	@Column(name="ENDERECO")
-	private String endereco;
-
-	@Column(name="NOME")
 	private String nome;
-
-	@Column(name="TELEFONE")
-	private String telefone;
 
 	//bi-directional many-to-many association to Produto
 	@ManyToMany
@@ -53,28 +45,12 @@ public class Fornecedor implements Serializable {
 		this.id = id;
 	}
 
-	public String getEndereco() {
-		return this.endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
 	public String getNome() {
 		return this.nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return this.telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public List<Produto> getProdutos() {

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.PersistSpring.dao.ProdutoDao;
 import br.com.PersistSpring.modelo.Fornecedor;
@@ -18,7 +17,7 @@ public class ProdutoServico {
 	ProdutoDao produtoDao; 
 	
 
-	
+
 	public String salvar(Produto produto,Fornecedor fornecedor){
 		LinkedList<Fornecedor> lista = new LinkedList<Fornecedor>();
 		lista.add(fornecedor);

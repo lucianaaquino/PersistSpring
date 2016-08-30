@@ -37,6 +37,7 @@
 	<c:if test="${pedido == null}">
 	
 <form action="cadastraPedido" class="form-horizontal" method="post">
+ 
  <div class="form-group">
   	<label class="col-sm-2 control-label">Cliente:</label>
  <div class="col-sm-10">
@@ -56,11 +57,12 @@
 </div>	
 
 
-
 	<div align="center">
 <input type="submit" class="btn btn-primary" value="Cadastra Pedido "  >
 <a href="index" class="btn btn-success" >Voltar </a>
 </div>
+</form>
+
 	</c:if>
 
  
@@ -69,10 +71,9 @@
 	
 	<c:if test="${pedido != null}">
 
-${pedido.id}--
+
 ${pedido.data}
 
- <div class="form-group">
 
 <table class="table table-bordered">
  <thead>
@@ -94,8 +95,8 @@ ${pedido.data}
       		<td>${p.valor}</td>
       		<td><input type="text" name="quantidade"> </td>
       		<td><input type="submit" value="Comprar" > </td>
-      			<input type="hidden" name="itemPedido.pk.pedidoId" value="${pedido.id}" > 
-      			<input type="hidden" name="itemPedido.pk.produtoId" value="${p.id}" > 
+      		<input type="hidden" name="pk.pedidoId" value="${pedido.id}" >
+   			<input type="hidden" name="pk.produtoId" value="${p.id}" >
        		</form> 
       	</tr>
       		${cont }---conta
@@ -107,16 +108,65 @@ ${pedido.data}
 </table
 
 
+
+
+
+
+
+
 <c:forEach items="${pedido.itemPedidos}" var="lp">
-${lp.produto.descricao }
+${lp.produto.descricao } pedidos Cadastrados
 </c:forEach>
 
-</div>
 	<div align="center">
 <a href="index" class="btn btn-success" >Voltar </a>
 </div>
 
  </c:if>
+ 
+ 	<c:if test="${pedido != null}">
+ 
+ <form action="adicionaPedidoGeral">
+
+	 <table class="table table-bordered">
+	 <thead>
+	        <tr>
+	          <th>id</th>
+	          <th>Produto</th>
+	          <th>Valor Unitario</th>
+	          <th>Quantidade</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      <c:set var="cont" value="0" ></c:set>
+	      <c:forEach items="${listaProduto}"  var="p" varStatus="i">
+	      	<tr>
+	       		<td>${p.id}</td>
+	      		<td>${p.descricao}</td>
+	      		<td>${p.valor}</td>
+	      		<td><input type="text" name="itemPedidos[${i.index}].quantidade"> </td>
+	   			<input type="hidden" name="itemPedidos[${i.index}].pk.pedidoId" value="${pedido.id}" >
+	   			<input type="hidden" name="itemPedidos[${i.index}].pk.produtoId" value="${p.id}" >
+	       		</form> 
+	      	</tr>
+	   
+	      </c:forEach>
+	      </tbody>
+	  
+	</table> 
+	<input type="hidden" name="id" value="${pedido.id}" >
+	<input type="hidden" name="cliente.id" value="${pedido.cliente.id}" >
+	<input type="submit" value="Compra Geral" > s${pedido.id}
+	
+	</form>
+ </c:if>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 </body>

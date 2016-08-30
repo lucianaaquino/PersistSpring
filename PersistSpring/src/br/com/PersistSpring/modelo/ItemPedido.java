@@ -1,19 +1,11 @@
 package br.com.PersistSpring.modelo;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
- * The persistent class for the ITEM_PEDIDO database table.
+ * The persistent class for the item_pedido database table.
  * 
  */
 @Entity
@@ -25,14 +17,12 @@ public class ItemPedido implements Serializable {
 	@EmbeddedId
 	private PK pk;
 
-	@Column(name="QUANTIDADE")
 	private int quantidade;
 
-	@Column(name="VALOR")
 	private float valor;
 
 	//bi-directional many-to-one association to Pedido
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL )
 	@JoinColumn(name = "PEDIDO_ID",referencedColumnName="ID", insertable=false, updatable=false, nullable=false)
 	private Pedido pedido;
 
@@ -43,19 +33,22 @@ public class ItemPedido implements Serializable {
 
 	public ItemPedido() {
 		super();
-	
 	}
 
 	
+	
+
 	public PK getPk() {
 		return pk;
 	}
 
 
 
+
 	public void setPk(PK pk) {
 		this.pk = pk;
 	}
+
 
 
 
@@ -90,60 +83,58 @@ public class ItemPedido implements Serializable {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+
+
+@Embeddable
+public static class PK implements Serializable {
+	//default serial version id, required for serializable classes.
+	private static final long serialVersionUID = 1L;
 	
-	@Embeddable
-	public static class PK implements Serializable {
-		//default serial version id, required for serializable classes.
-		private static final long serialVersionUID = 1L;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="PRODUTO_ID")
+	private int produtoId;
+	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="PEDIDO_ID")
+	private int pedidoId;
 
-		@Column(name="PEDIDO_ID", insertable=false, updatable=false)
-		private int pedidoId;
-
-		@Column(name="PRODUTO_ID", insertable=false, updatable=false)
-		private int produtoId;
-
-		public PK() {
-			super();
-			
-		}
-		public PK(int idPedido,int idProduto) {
-			this.setPedidoId(idPedido);
-			this.setProdutoId(idProduto);
-		}
-		public int getPedidoId() {
-			return this.pedidoId;
-		}
-		public void setPedidoId(int pedidoId) {
-			this.pedidoId = pedidoId;
-		}
-		public int getProdutoId() {
-			return this.produtoId;
-		}
-		public void setProdutoId(int produtoId) {
-			this.produtoId = produtoId;
-		}
-
-		public boolean equals(Object other) {
-			if (this == other) {
-				return true;
-			}
-			if (!(other instanceof PK)) {
-				return false;
-			}
-			PK castOther = (PK)other;
-			return 
-				(this.pedidoId == castOther.pedidoId)
-				&& (this.produtoId == castOther.produtoId);
-		}
-
-		public int hashCode() {
-			final int prime = 31;
-			int hash = 17;
-			hash = hash * prime + this.pedidoId;
-			hash = hash * prime + this.produtoId;
-			
-			return hash;
-		}
+	public PK() {
+		super();
 	}
+	public int getProdutoId() {
+		return this.produtoId;
+	}
+	public void setProdutoId(int produtoId) {
+		this.produtoId = produtoId;
+	}
+	public int getPedidoId() {
+		return this.pedidoId;
+	}
+	public void setPedidoId(int pedidoId) {
+		this.pedidoId = pedidoId;
+	}
+
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof PK)) {
+			return false;
+		}
+		PK castOther = (PK)other;
+		return 
+			(this.produtoId == castOther.produtoId)
+			&& (this.pedidoId == castOther.pedidoId);
+	}
+
+	public int hashCode() {
+		final int prime = 31;
+		int hash = 17;
+		hash = hash * prime + this.produtoId;
+		hash = hash * prime + this.pedidoId;
+		
+		return hash;
+	}
+}
 
 }

@@ -40,7 +40,12 @@ public class PedidoController {
 		return new ModelAndView("/pedido");
 	}
 	
-	
+	@RequestMapping("/adicionaPedidoGeral")
+	public ModelAndView adicionaPedidoGeral(Model model,Pedido pedido) throws Exception {
+		model.addAttribute("pedido",	pedidoServico.salvarPedidoGeral(pedido));
+		model.addAttribute("listaProduto",	produtoServico.pesquisarProduto());
+		return new ModelAndView("/pedido");
+	}
 	
 	
 	@RequestMapping("/pesquisarPedido")
