@@ -19,6 +19,10 @@
    
    
    <exclude-unlisted-classes />
+ <property name="eclipselink.logging.level" value="INFO" />
+  <property name="eclipselink.target-database" value="MySQL" />
+  <property name="eclipselink.logging.level" value="INFO" />
+    
    
   <!--  <properties>
   dados da conexao
@@ -28,10 +32,7 @@
   <property name="javax.persistence.jdbc.password" value="root" />
   <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 
-  <property name="eclipselink.logging.level" value="INFO" />
-  <property name="eclipselink.target-database" value="MySQL" />
-  <property name="eclipselink.logging.level" value="INFO" />
-    
+ 
    </properties> -->
  </persistence-unit>
 </persistence>

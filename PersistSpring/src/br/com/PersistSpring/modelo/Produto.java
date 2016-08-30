@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the PRODUTO database table.
+ * The persistent class for the produto database table.
  * 
  */
 @Entity
@@ -16,27 +16,24 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="DESCRICAO")
 	private String descricao;
 
-	@Column(name="VALOR")
 	private float valor;
 
 	//bi-directional many-to-many association to Fornecedor
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
-		name="FORNECEDOR_PRODUTO"
-		, joinColumns={
-			@JoinColumn(name="PRODUTO_ID"),
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="FORNECEDOR_ID")
-			}
-)
+			name="FORNECEDOR_PRODUTO"
+			, joinColumns={
+				@JoinColumn(name="PRODUTO_ID")
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="FORNECEDOR_ID")
+				}
+			)
 	private List<Fornecedor> fornecedor;
 
 	//bi-directional many-to-one association to ItemPedido

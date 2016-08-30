@@ -36,6 +36,14 @@ public class PedidoDao {
 	  }
 	 
 	 @Transactional
+	  public Pedido atualiza(Pedido pedido) throws Exception {
+		 entityManager.merge(pedido);
+		 entityManager.flush();
+		 return pedido;
+	     
+	  }
+	 
+	 @Transactional
 	  public ItemPedido salvarItem(ItemPedido itemPedido) throws Exception {
 		 entityManager.persist(itemPedido);
 		/* entityManager.flush();*/
@@ -50,6 +58,11 @@ public class PedidoDao {
 	 }
 	 public Pedido buscarId(int id){
 			return entityManager.find(Pedido.class,id);
+			
+			 
+		 }
+	 public ItemPedido buscarIdItem(ItemPedido itemPedido){
+			return entityManager.find(ItemPedido.class,itemPedido.getPk());
 			
 			 
 		 }

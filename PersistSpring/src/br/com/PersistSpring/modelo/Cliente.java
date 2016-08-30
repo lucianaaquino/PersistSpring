@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the CLIENTE database table.
+ * The persistent class for the cliente database table.
  * 
  */
 @Entity
@@ -17,16 +17,12 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
 	private int id;
 
-	@Column(name="CNPJ")
 	private String cnpj;
 
-	@Column(name="CPF")
 	private String cpf;
 
-	@Column(name="NOME")
 	private String nome;
 
 	@Column(name="TIPO_CLIENTE")

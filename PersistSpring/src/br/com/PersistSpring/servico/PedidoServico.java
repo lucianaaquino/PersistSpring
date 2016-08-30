@@ -19,9 +19,11 @@ public class PedidoServico {
 
 	public Pedido salvar(Pedido pedido) throws Exception{
 		String msg ="Cadastro Efetuado";
+		
 		Pedido pe = new Pedido();
 		try {
 			pe = pedidoDao.salvar(pedido);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,6 +31,21 @@ public class PedidoServico {
 		}
 		return pe;
 	}
+	
+	
+	public Pedido salvarPedidoGeral(Pedido pedido) throws Exception{
+		String msg ="Cadastro Efetuado";
+		Pedido pe = new Pedido();
+		try {
+			pe = pedidoDao.atualiza(pedido);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			msg = e.getMessage();
+		}
+		return pe;
+	}
+	
 	
 	public Pedido salvar(ItemPedido itemPedido) throws Exception{
 		String msg ="Cadastro Efetuado";
